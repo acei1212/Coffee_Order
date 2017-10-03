@@ -98,7 +98,12 @@ public class My_Dialog_Fragment extends DialogFragment {
         int position = mSpinner.getSelectedItemPosition();
         String title = mSpinnerAdapter.getCoffee_titles().getString(position);
         EditText ev_price = (EditText) mDialogView.findViewById(R.id.coffee_price);
-        int price = Integer.parseInt(ev_price.getText().toString());
+        int price;
+        try {
+            price = Integer.parseInt(ev_price.getText().toString());
+        }catch (RuntimeException e){
+           price = 0;
+        }
         int img_resource_id = mSpinnerAdapter.getImg_resource_id_array()[position];
         return new Coffee(title, price, img_resource_id);
     }

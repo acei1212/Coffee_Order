@@ -93,13 +93,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void 處理確定(Coffee coffee) {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        Snackbar.make(fab, "收到確定 coffee = " + coffee, Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show();
-        Log.d(TAG, "收到確定 coffee = " + coffee);
-        //add coffee
-        mCoffeeList.add(coffee);
-        MyListAdapter myListAdapter = (MyListAdapter) mListView.getAdapter();
-        myListAdapter.notifyDataSetChanged(); //透過 adapter 通知 listview 更新畫面
+            Snackbar.make(fab, "收到確定 coffee = " + coffee, Snackbar.LENGTH_SHORT)
+                    .setAction("Action", null).show();
+            Log.d(TAG, "收到確定 coffee = " + coffee);
+            //add coffee
+            mCoffeeList.add(coffee);
+            MyListAdapter myListAdapter = (MyListAdapter) mListView.getAdapter();
+            myListAdapter.notifyDataSetChanged(); //透過 adapter 通知 listview 更新畫面
     }
 
     @Override
