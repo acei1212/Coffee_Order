@@ -7,10 +7,10 @@
         <item>@drawable/coffee_mocha</item>
     </array>
  <string-array name="coffee_titles">
-     <item>cappuccino</item>
-     <item>latte</item>
-     <item>macchiato</item>
-     <item>mocha</item>
+     <item>卡布奇諾</item>
+     <item>拿鐵</item>
+     <item>瑪奇朵</item>
+     <item>摩卡</item>
  </string-array>
 
 </resources>

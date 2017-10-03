@@ -11,10 +11,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements My_Dialog_Fragment.能處理確定取消, AdapterView.OnItemSelectedListener {
+        implements My_Dialog_Fragment.能處理確定取消,
+        AdapterView.OnItemSelectedListener,
+        AdapterView.OnItemClickListener {
+
     private static final String TAG = "Mainacitvity";
+    private ListView mListView;
+    private List<Coffee> mCoffeeList = new ArrayList<>();
+
+    //getter
+    public List<Coffee> getmCoffeeList(){
+        return mCoffeeList;
+    }
 
 
     @Override
@@ -23,6 +37,10 @@ public class MainActivity extends AppCompatActivity
         Snackbar.make(fab, "收到確定 coffee = "+ coffee, Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
         Log.d(TAG,"收到確定 coffee = "+coffee);
+        //add coffee
+        mCoffeeList.add(coffee);
+        MyListAdapter myListAdapter = (MyListAdapter) mListView.getAdapter();
+        myListAdapter.notifyDataSetChanged(); //透過 adapter 通知 listview 更新畫面
     }
 
     @Override
@@ -50,6 +68,13 @@ public class MainActivity extends AppCompatActivity
                 dialog.show(getSupportFragmentManager(), "MyDialogFragment");
             }
         });
+        initListView();
+    }
+    private void initListView(){
+        mListView = (ListView) findViewById(R.id.listview);
+        mListView.setEmptyView(findViewById(R.id.empty));
+        mListView.setAdapter(new MyListAdapter(this));
+        mListView.setOnItemClickListener(this);
     }
 
     @Override
@@ -82,6 +107,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+    public void onItemClick(AdapterView<?> parent, View view ,int position ,long id){
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+        Snackbar.make(fab,"點選了第" + position + "項" ,Snackbar.LENGTH_SHORT)
+                .setAction("Action",null).show();
     }
 
 }
